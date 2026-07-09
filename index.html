@@ -128,13 +128,12 @@
   .view:hover{border-color:var(--accent);color:var(--accent-deep)}
 
   /* expertise */
-  .exp{display:grid;grid-template-columns:repeat(2,1fr);gap:0 60px;margin-top:64px}
+  .exp{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:0 56px;margin-top:44px}
   @media(max-width:760px){.exp{grid-template-columns:1fr}}
-  .expcol{padding:30px 0;border-top:1px solid var(--line)}
-  .expcol h4{font-family:'Fraunces';font-weight:600;font-size:1.2rem;margin-bottom:14px}
-  .expcol ul{list-style:none;columns:1}
-  .expcol li{color:var(--muted);padding:5px 0;font-size:.96rem;display:flex;gap:10px}
-  .expcol li::before{content:"—";color:var(--accent);flex:none}
+  .expcol{padding:24px 0;border-top:1px solid var(--line)}
+  .expcol h4{font-family:'Fraunces';font-weight:600;font-size:1.15rem;margin-bottom:10px}
+  .expcol p{color:var(--muted);font-size:.98rem;line-height:1.75}
+  .expcol p b{color:var(--ink-soft);font-weight:600}
 
   /* contact */
   .contact{text-align:center;padding:100px 0}
@@ -276,31 +275,27 @@
   <div class="exp">
     <div class="expcol reveal" data-d="1">
       <h4>Distributed Systems</h4>
-      <ul>
-        <li>MPP query engines</li><li>Columnar storage &amp; vectorized execution</li>
-        <li>Partitioning strategies</li><li>Async job systems &amp; IoT orchestration</li>
-      </ul>
+      <p>MPP query engines · Columnar storage · Vectorized execution · Partitioning strategies · Async job systems · IoT orchestration</p>
     </div>
     <div class="expcol reveal" data-d="2">
       <h4>Data Architecture</h4>
-      <ul>
-        <li>Lakehouse design</li><li>Semantic models</li>
-        <li>Telemetry pipelines</li><li>Stream &amp; batch processing</li>
-      </ul>
+      <p>Lakehouse design · Semantic models · Telemetry pipelines · Stream &amp; batch processing · Medallion architecture</p>
+    </div>
+    <div class="expcol reveal" data-d="3">
+      <h4>Query Engines</h4>
+      <p>Fabric SQL · Presto · Trino · StarRocks · ClickHouse · Apache Kylin · SQL &amp; query optimization</p>
     </div>
     <div class="expcol reveal" data-d="1">
-      <h4>Query Engines</h4>
-      <ul>
-        <li>Fabric SQL · Presto · Trino</li><li>StarRocks · ClickHouse</li>
-        <li>Apache Kylin</li><li>SQL &amp; query optimization</li>
-      </ul>
+      <h4>Languages &amp; Foundations</h4>
+      <p><b>C#</b> · <b>.NET</b> · Python · TypeScript · JavaScript · SQL · T-SQL</p>
     </div>
     <div class="expcol reveal" data-d="2">
       <h4>Platform Engineering</h4>
-      <ul>
-        <li>Python · FastAPI · React · TypeScript</li><li>Azure (App Service, IoT Hub, Blob)</li>
-        <li>Managed identity · VNet</li><li>CI/CD automation</li>
-      </ul>
+      <p>FastAPI · React · Azure (App Service, IoT Hub, Blob) · Managed identity · VNet</p>
+    </div>
+    <div class="expcol reveal" data-d="3">
+      <h4>Delivery &amp; Reliability</h4>
+      <p>CI/CD automation · Benchmarking &amp; perf tuning · Live-site ownership · Zero-key security</p>
     </div>
   </div>
 </div></section>
