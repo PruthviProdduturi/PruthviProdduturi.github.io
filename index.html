@@ -46,9 +46,11 @@
   nav{position:fixed;top:0;left:0;right:0;z-index:50;transition:.35s;border-bottom:1px solid transparent}
   nav.scrolled{background:rgba(250,247,241,.82);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
   nav .wrap{display:flex;align-items:center;justify-content:space-between;height:76px}
-  .mark{display:flex;align-items:center;gap:12px}
-  .monogram{width:40px;height:40px;border:1.5px solid var(--ink);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Fraunces';font-weight:600;font-size:.95rem;letter-spacing:.02em}
-  .mark .who{font-family:'Fraunces';font-weight:600;font-size:1.02rem}
+  .mark{display:flex;align-items:center;gap:12px;transition:.25s}
+  .monogram{width:40px;height:40px;border:1.5px solid var(--ink);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Fraunces';font-weight:600;font-size:.95rem;letter-spacing:.02em;transition:.25s}
+  .mark .who{font-family:'Fraunces';font-weight:600;font-size:1.02rem;transition:.25s}
+  .mark:hover .monogram{background:var(--ink);color:var(--bg)}
+  .mark:hover .who{color:var(--accent-deep)}
   .navlinks{display:flex;gap:36px;font-size:.82rem;letter-spacing:.04em;color:var(--muted);text-transform:uppercase;font-weight:500}
   .navlinks a{transition:.2s}
   .navlinks a:hover{color:var(--ink)}
@@ -151,10 +153,10 @@
 <body>
 
 <nav id="nav"><div class="wrap">
-  <div class="mark">
+  <a class="mark" href="#" aria-label="Back to top">
     <div class="monogram">PP</div>
     <span class="who">Pruthvi Prodduturi</span>
-  </div>
+  </a>
   <div class="navlinks">
     <a href="#about">About</a>
     <a href="#impact">Impact</a>
