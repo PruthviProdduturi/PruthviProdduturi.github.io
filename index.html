@@ -62,6 +62,14 @@
 
   /* hero */
   .hero{min-height:100vh;display:flex;align-items:center;padding:120px 0 80px}
+  .hero .wrap{width:100%}
+  .hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:72px;align-items:center}
+  @media(max-width:880px){.hero-grid{grid-template-columns:1fr;gap:48px}}
+  .portrait{position:relative;justify-self:end;max-width:380px;width:100%}
+  .portrait::before{content:"";position:absolute;inset:0;transform:translate(16px,16px);border:1px solid var(--accent);border-radius:3px;z-index:0;transition:.4s}
+  .portrait:hover::before{transform:translate(10px,10px)}
+  .portrait img{position:relative;z-index:1;width:100%;aspect-ratio:4/5;object-fit:cover;object-position:center 12%;border-radius:3px;display:block;box-shadow:0 34px 70px -34px rgba(28,27,24,.55)}
+  @media(max-width:880px){.portrait{justify-self:start;max-width:300px}}
   .hero .kicker{font-family:'JetBrains Mono';font-size:.78rem;letter-spacing:.24em;text-transform:uppercase;color:var(--muted)}
   .hero h1{font-size:clamp(3rem,9vw,7rem);line-height:.98;font-weight:500;margin:28px 0 0;letter-spacing:-.025em}
   .hero h1 em{font-style:italic;font-weight:400;color:var(--accent-deep)}
@@ -156,16 +164,21 @@
 </div></nav>
 
 <header class="hero"><div class="wrap">
-  <div class="reveal">
-    <div class="kicker">Engineering Lead · Microsoft · Redmond, WA</div>
-    <h1 class="reveal" data-d="1">Pruthvi<br>Prodduturi<em>.</em></h1>
-    <div class="rule reveal" data-d="2"></div>
-    <p class="role reveal" data-d="2">I lead the design of <b>distributed data systems, query engines,</b> and <b>zero-to-one platforms</b> — across Microsoft's Consumer, Commercial, and Hardware data universes.</p>
-    <p class="statement reveal" data-d="3">“Consumer data is massive. Commercial data is deep. Hardware data isn't forgiving — and that's exactly where I operate.”</p>
-    <div class="cta reveal" data-d="4">
-      <a class="btn solid" href="#work">View selected work</a>
-      <a class="btn link" href="https://www.linkedin.com/in/pruthviprodduturi/" target="_blank">LinkedIn</a>
-      <a class="btn link" href="https://github.com/PruthviProdduturi" target="_blank">GitHub</a>
+  <div class="hero-grid">
+    <div>
+      <div class="kicker reveal">Engineering Lead · Microsoft · Redmond, WA</div>
+      <h1 class="reveal" data-d="1">Pruthvi<br>Prodduturi<em>.</em></h1>
+      <div class="rule reveal" data-d="2"></div>
+      <p class="role reveal" data-d="2">I lead the design of <b>distributed data systems, query engines,</b> and <b>zero-to-one platforms</b> — across Microsoft's Consumer, Commercial, and Hardware data universes.</p>
+      <p class="statement reveal" data-d="3">“Consumer data is massive. Commercial data is deep. Hardware data isn't forgiving — and that's exactly where I operate.”</p>
+      <div class="cta reveal" data-d="4">
+        <a class="btn solid" href="#work">View selected work</a>
+        <a class="btn link" href="https://www.linkedin.com/in/pruthviprodduturi/" target="_blank">LinkedIn</a>
+        <a class="btn link" href="https://github.com/PruthviProdduturi" target="_blank">GitHub</a>
+      </div>
+    </div>
+    <div class="portrait reveal" data-d="2">
+      <img src="portrait.jpg" alt="Portrait of Pruthvi Prodduturi" width="380" height="475">
     </div>
   </div>
 </div></header>
