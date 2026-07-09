@@ -131,9 +131,11 @@
   .exp{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:0 56px;margin-top:44px}
   @media(max-width:760px){.exp{grid-template-columns:1fr}}
   .expcol{padding:24px 0;border-top:1px solid var(--line)}
-  .expcol h4{font-family:'Fraunces';font-weight:600;font-size:1.15rem;margin-bottom:10px}
-  .expcol p{color:var(--muted);font-size:.98rem;line-height:1.75}
-  .expcol p b{color:var(--ink-soft);font-weight:600}
+  .expcol h4{font-family:'Fraunces';font-weight:600;font-size:1.15rem;margin-bottom:14px}
+  .expcol .tags{display:flex;flex-wrap:wrap;gap:8px}
+  .tag{font-size:.82rem;padding:6px 13px;border:1px solid var(--line-strong);border-radius:999px;color:var(--ink-soft);background:var(--paper);white-space:nowrap;transition:.2s}
+  .tag:hover{border-color:var(--accent);color:var(--accent-deep)}
+  .tag.key{border-color:var(--accent);color:var(--accent-deep);font-weight:500}
 
   /* contact */
   .contact{text-align:center;padding:100px 0}
@@ -275,27 +277,39 @@
   <div class="exp">
     <div class="expcol reveal" data-d="1">
       <h4>Distributed Systems</h4>
-      <p>MPP query engines · Columnar storage · Vectorized execution · Partitioning strategies · Async job systems · IoT orchestration</p>
+      <div class="tags">
+        <span class="tag">MPP query engines</span><span class="tag">Columnar storage</span><span class="tag">Vectorized execution</span><span class="tag">Partitioning strategies</span><span class="tag">Async job systems</span><span class="tag">IoT orchestration</span>
+      </div>
     </div>
     <div class="expcol reveal" data-d="2">
       <h4>Data Architecture</h4>
-      <p>Lakehouse design · Semantic models · Telemetry pipelines · Stream &amp; batch processing · Medallion architecture</p>
+      <div class="tags">
+        <span class="tag">Lakehouse design</span><span class="tag">Semantic models</span><span class="tag">Telemetry pipelines</span><span class="tag">Stream &amp; batch</span><span class="tag">Medallion architecture</span>
+      </div>
     </div>
     <div class="expcol reveal" data-d="3">
       <h4>Query Engines</h4>
-      <p>Fabric SQL · Presto · Trino · StarRocks · ClickHouse · Apache Kylin · SQL &amp; query optimization</p>
+      <div class="tags">
+        <span class="tag">Fabric SQL</span><span class="tag">Presto</span><span class="tag">Trino</span><span class="tag">StarRocks</span><span class="tag">ClickHouse</span><span class="tag">Apache Kylin</span><span class="tag">Query optimization</span>
+      </div>
     </div>
     <div class="expcol reveal" data-d="1">
       <h4>Languages &amp; Foundations</h4>
-      <p><b>C#</b> · <b>.NET</b> · Python · TypeScript · JavaScript · SQL · T-SQL</p>
+      <div class="tags">
+        <span class="tag key">C#</span><span class="tag key">.NET</span><span class="tag">Python</span><span class="tag">TypeScript</span><span class="tag">JavaScript</span><span class="tag">SQL</span><span class="tag">T-SQL</span>
+      </div>
     </div>
     <div class="expcol reveal" data-d="2">
       <h4>Platform Engineering</h4>
-      <p>FastAPI · React · Azure (App Service, IoT Hub, Blob) · Managed identity · VNet</p>
+      <div class="tags">
+        <span class="tag">FastAPI</span><span class="tag">React</span><span class="tag">Azure</span><span class="tag">IoT Hub</span><span class="tag">Managed identity</span><span class="tag">VNet</span>
+      </div>
     </div>
     <div class="expcol reveal" data-d="3">
       <h4>Delivery &amp; Reliability</h4>
-      <p>CI/CD automation · Benchmarking &amp; perf tuning · Live-site ownership · Zero-key security</p>
+      <div class="tags">
+        <span class="tag">CI/CD automation</span><span class="tag">Benchmarking &amp; perf tuning</span><span class="tag">Live-site ownership</span><span class="tag">Zero-key security</span>
+      </div>
     </div>
   </div>
 </div></section>
