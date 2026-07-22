@@ -8,6 +8,13 @@
 <meta property="og:title" content="Pruthvi Prodduturi — Engineering Lead">
 <meta property="og:description" content="Distributed data systems · query engines · zero-to-one platforms.">
 <meta property="og:type" content="website">
+<meta property="og:url" content="https://pruthviprodduturi.github.io">
+<meta property="og:image" content="https://pruthviprodduturi.github.io/portrait.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Pruthvi Prodduturi — Engineering Lead">
+<meta name="twitter:description" content="Distributed data systems, query engines, and zero-to-one platforms.">
+<meta name="twitter:image" content="https://pruthviprodduturi.github.io/portrait.jpg">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Cstyle%3Ecircle%7Bfill:none;stroke:%231c1b18;stroke-width:1.5%7Dtext%7Bfont-family:Georgia,serif;font-weight:600;font-size:14px;fill:%231c1b18%7D@media(prefers-color-scheme:dark)%7Bcircle%7Bstroke:%23e8e4dc%7Dtext%7Bfill:%23e8e4dc%7D%7D%3C/style%3E%3Ccircle cx='20' cy='20' r='18'/%3E%3Ctext x='20' y='25' text-anchor='middle'%3EPP%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -23,14 +30,34 @@
     --line-strong:#d8cfbd;
     --accent:#9a6b3f;      /* refined bronze */
     --accent-deep:#7d5530;
+    --nav-scroll-bg:rgba(250,247,241,.82);
+    --selection-bg:#efe6d4;
+    --shadow-portrait:rgba(28,27,24,.55);
+    --imp-hover:rgba(154,107,63,.04);
+  }
+  [data-theme="dark"]{
+    --bg:#141310;
+    --paper:#1c1b18;
+    --ink:#e8e4dc;
+    --ink-soft:#c8c3b8;
+    --muted:#8a847a;
+    --faint:#5c574e;
+    --line:#2e2b26;
+    --line-strong:#3d3830;
+    --accent:#c4935e;
+    --accent-deep:#d4a76a;
+    --nav-scroll-bg:rgba(20,19,16,.85);
+    --selection-bg:#3d3830;
+    --shadow-portrait:rgba(0,0,0,.7);
+    --imp-hover:rgba(196,147,94,.06);
   }
   *{margin:0;padding:0;box-sizing:border-box}
   html{scroll-behavior:smooth}
-  ::selection{background:#efe6d4;color:var(--ink)}
+  ::selection{background:var(--selection-bg);color:var(--ink)}
   body{
     font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--ink);
     line-height:1.7;-webkit-font-smoothing:antialiased;overflow-x:hidden;
-    font-size:17px;
+    font-size:17px;transition:background-color .3s,color .3s;
   }
   a{color:inherit;text-decoration:none}
   .wrap{max-width:1240px;margin:0 auto;padding:0 48px}
@@ -44,17 +71,40 @@
 
   /* nav */
   nav{position:fixed;top:0;left:0;right:0;z-index:50;transition:.35s;border-bottom:1px solid transparent}
-  nav.scrolled{background:rgba(250,247,241,.82);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+  nav.scrolled{background:var(--nav-scroll-bg);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
   nav .wrap{display:flex;align-items:center;justify-content:space-between;height:76px}
+  .nav-right{display:flex;align-items:center;gap:24px}
   .mark{display:flex;align-items:center;gap:12px;transition:.25s}
-  .monogram{width:40px;height:40px;border:1.5px solid var(--ink);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Fraunces';font-weight:600;font-size:.95rem;letter-spacing:.02em;transition:.25s}
-  .mark .who{font-family:'Fraunces';font-weight:600;font-size:1.02rem;transition:.25s}
+  .monogram{width:40px;height:40px;border:1.5px solid var(--ink);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Fraunces',Georgia,serif;font-weight:600;font-size:.95rem;letter-spacing:.02em;transition:.25s}
+  .mark .who{font-family:'Fraunces',Georgia,serif;font-weight:600;font-size:1.02rem;transition:.25s}
   .mark:hover .monogram{background:var(--ink);color:var(--bg)}
   .mark:hover .who{color:var(--accent-deep)}
   .navlinks{display:flex;gap:36px;font-size:.82rem;letter-spacing:.04em;color:var(--muted);text-transform:uppercase;font-weight:500}
   .navlinks a{transition:.2s}
   .navlinks a:hover{color:var(--ink)}
   @media(max-width:720px){.navlinks{display:none}}
+
+  /* theme toggle */
+  .theme-toggle{background:none;border:1.5px solid var(--line-strong);border-radius:50%;width:36px;height:36px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:.25s;color:var(--muted);padding:0}
+  .theme-toggle:hover{border-color:var(--accent);color:var(--accent-deep)}
+  .theme-toggle svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+  .theme-toggle .icon-moon{display:none}
+  [data-theme="dark"] .theme-toggle .icon-sun{display:none}
+  [data-theme="dark"] .theme-toggle .icon-moon{display:block}
+
+  /* hamburger */
+  .hamburger{display:none;background:none;border:none;cursor:pointer;padding:6px;flex-direction:column;gap:5px;z-index:101}
+  .hamburger span{display:block;width:22px;height:2px;background:var(--ink);transition:.3s;border-radius:1px}
+  .hamburger.open span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
+  .hamburger.open span:nth-child(2){opacity:0}
+  .hamburger.open span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
+  @media(max-width:720px){.hamburger{display:flex}}
+
+  /* mobile nav overlay */
+  .mobile-overlay{position:fixed;inset:0;background:var(--bg);z-index:100;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:36px;opacity:0;pointer-events:none;transition:opacity .3s}
+  .mobile-overlay.open{opacity:1;pointer-events:auto}
+  .mobile-overlay a{font-family:'Fraunces',Georgia,serif;font-size:1.6rem;font-weight:500;color:var(--ink);transition:.2s;letter-spacing:-.01em}
+  .mobile-overlay a:hover{color:var(--accent-deep)}
 
   /* reveal */
   .reveal{opacity:0;transform:translateY(20px);transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1)}
@@ -71,15 +121,15 @@
   .portrait{position:relative;justify-self:end;max-width:380px;width:100%}
   .portrait::before{content:"";position:absolute;inset:0;transform:translate(16px,16px);border:1px solid var(--accent);border-radius:3px;z-index:0;transition:.4s}
   .portrait:hover::before{transform:translate(10px,10px)}
-  .portrait img{position:relative;z-index:1;width:100%;aspect-ratio:4/5;object-fit:cover;object-position:center;border-radius:3px;display:block;box-shadow:0 34px 70px -34px rgba(28,27,24,.55)}
+  .portrait img{position:relative;z-index:1;width:100%;aspect-ratio:4/5;object-fit:cover;object-position:center;border-radius:3px;display:block;box-shadow:0 34px 70px -34px var(--shadow-portrait)}
   @media(max-width:880px){.portrait{justify-self:start;max-width:300px}}
-  .hero .kicker{font-family:'JetBrains Mono';font-size:.78rem;letter-spacing:.24em;text-transform:uppercase;color:var(--muted)}
+  .hero .kicker{font-family:'JetBrains Mono',monospace;font-size:.78rem;letter-spacing:.24em;text-transform:uppercase;color:var(--muted)}
   .hero h1{font-size:clamp(3rem,9vw,7rem);line-height:.98;font-weight:500;margin:28px 0 0;letter-spacing:-.025em}
   .hero h1 em{font-style:italic;font-weight:400;color:var(--accent-deep)}
   .rule{height:1px;background:var(--line-strong);margin:40px 0;max-width:120px}
   .hero .role{font-size:1.15rem;color:var(--ink-soft);max-width:560px}
   .hero .role b{font-weight:600}
-  .hero .statement{font-family:'Fraunces';font-style:italic;font-weight:400;font-size:clamp(1.3rem,2.6vw,1.7rem);color:var(--ink);max-width:640px;margin-top:30px;line-height:1.45}
+  .hero .statement{font-family:'Fraunces',Georgia,serif;font-style:italic;font-weight:400;font-size:clamp(1.3rem,2.6vw,1.7rem);color:var(--ink);max-width:640px;margin-top:30px;line-height:1.45}
   .cta{display:flex;gap:14px;flex-wrap:wrap;margin-top:44px;align-items:center}
   .btn{font-size:.92rem;font-weight:500;transition:.25s}
   .btn.solid{background:var(--ink);color:var(--bg);padding:15px 30px;border-radius:2px}
@@ -93,22 +143,25 @@
   @media(max-width:820px){.sec-head{grid-template-columns:1fr;gap:18px}}
   .sec-h{font-size:clamp(2rem,4.5vw,3.1rem);font-weight:500;line-height:1.08;letter-spacing:-.02em;max-width:900px}
   .sec-h em{font-style:italic;color:var(--accent-deep)}
-  .sec-lede{color:var(--muted);font-size:1.12rem;margin-top:22px;max-width:680px}
+  .sec-lede{color:var(--muted);font-size:1.15rem;margin-top:22px;max-width:680px}
   .sec-lede b{color:var(--ink);font-weight:600}
 
   /* stats */
   .stats{display:grid;grid-template-columns:repeat(4,1fr);margin-top:64px;border-top:1px solid var(--line)}
   @media(max-width:760px){.stats{grid-template-columns:repeat(2,1fr)}}
   .stat{padding:34px 26px 34px 0;border-bottom:1px solid var(--line)}
-  .stat .n{font-family:'Fraunces';font-size:2.6rem;font-weight:500;line-height:1;letter-spacing:-.02em}
+  .stat .n{font-family:'Fraunces',Georgia,serif;font-size:2.6rem;font-weight:500;line-height:1;letter-spacing:-.02em}
   .stat .l{color:var(--muted);font-size:.82rem;margin-top:12px;letter-spacing:.03em}
+
+  /* about narrative */
+  .about-narrative{font-family:'Fraunces',Georgia,serif;font-style:italic;font-weight:400;font-size:1.15rem;color:var(--ink-soft);max-width:740px;margin:48px auto 0;text-align:center;line-height:1.55}
 
   /* impact list */
   .impact{margin-top:64px}
   .imp{display:grid;grid-template-columns:64px 1fr;gap:28px;padding:34px 0;border-top:1px solid var(--line);transition:.3s}
   .imp:last-child{border-bottom:1px solid var(--line)}
-  .imp:hover{background:linear-gradient(90deg,rgba(154,107,63,.04),transparent)}
-  .imp .num{font-family:'JetBrains Mono';font-size:.85rem;color:var(--accent);padding-top:6px}
+  .imp:hover{background:linear-gradient(90deg,var(--imp-hover),transparent)}
+  .imp .num{font-family:'JetBrains Mono',monospace;font-size:.85rem;color:var(--accent);padding-top:6px}
   .imp h3{font-size:1.5rem;font-weight:500;letter-spacing:-.01em}
   .imp p{color:var(--muted);margin-top:10px;max-width:860px}
   .imp p b{color:var(--ink-soft);font-weight:600}
@@ -120,7 +173,7 @@
   @media(max-width:720px){.item{grid-template-columns:1fr}}
   .item .idx{font-family:'JetBrains Mono';font-size:.8rem;color:var(--faint);letter-spacing:.1em}
   .item h3{font-size:2rem;font-weight:500;margin:8px 0 4px;letter-spacing:-.02em}
-  .item .tagline{font-family:'Fraunces';font-style:italic;color:var(--accent-deep);font-size:1.05rem}
+  .item .tagline{font-family:'Fraunces',Georgia,serif;font-style:italic;color:var(--accent-deep);font-size:1.05rem}
   .item p{color:var(--muted);margin:16px 0 18px;max-width:640px}
   .meta{display:flex;flex-wrap:wrap;gap:8px 20px;font-size:.8rem;color:var(--muted);font-family:'JetBrains Mono';letter-spacing:.02em}
   .meta span{white-space:nowrap}
@@ -131,15 +184,26 @@
   .exp{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:0 56px;margin-top:44px}
   @media(max-width:760px){.exp{grid-template-columns:1fr}}
   .expcol{padding:24px 0;border-top:1px solid var(--line)}
-  .expcol h4{font-family:'Fraunces';font-weight:600;font-size:1.15rem;margin-bottom:14px}
+  .expcol h4{font-family:'Fraunces',Georgia,serif;font-weight:600;font-size:1.15rem;margin-bottom:14px}
   .expcol .tags{display:flex;flex-wrap:wrap;gap:8px}
   .tag{font-size:.82rem;padding:6px 13px;border:1px solid var(--line-strong);border-radius:999px;color:var(--ink-soft);background:var(--paper);white-space:nowrap;transition:.2s}
   .tag:hover{border-color:var(--accent);color:var(--accent-deep)}
   .tag.key{border-color:var(--accent);color:var(--accent-deep);font-weight:500}
 
+  /* writing */
+  .writing{margin-top:64px}
+  .writing-item{padding:28px 0;border-top:1px solid var(--line);display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center}
+  .writing-item:last-child{border-bottom:1px solid var(--line)}
+  @media(max-width:720px){.writing-item{grid-template-columns:1fr}}
+  .writing-item h3{font-size:1.25rem;font-weight:500;letter-spacing:-.01em}
+  .writing-item p{color:var(--muted);margin-top:6px;max-width:640px}
+  .writing-all{margin-top:28px;text-align:center}
+  .writing-all a{font-size:.88rem;font-weight:500;color:var(--accent-deep);border-bottom:1.5px solid var(--line-strong);padding-bottom:3px;transition:.2s}
+  .writing-all a:hover{border-color:var(--accent)}
+
   /* contact */
   .contact{text-align:center;padding:100px 0}
-  .contact .big{font-family:'Fraunces';font-size:clamp(2.4rem,7vw,5rem);font-weight:500;line-height:1.02;letter-spacing:-.02em;margin-top:20px}
+  .contact .big{font-family:'Fraunces',Georgia,serif;font-size:clamp(2.4rem,7vw,5rem);font-weight:500;line-height:1.02;letter-spacing:-.02em;margin-top:20px}
   .contact .big em{font-style:italic;color:var(--accent-deep)}
   .contact p{color:var(--muted);max-width:480px;margin:26px auto 0;font-size:1.05rem}
   .contact .cta{justify-content:center}
@@ -158,14 +222,33 @@
     <div class="monogram">PP</div>
     <span class="who">Pruthvi Prodduturi</span>
   </a>
-  <div class="navlinks">
-    <a href="#about">About</a>
-    <a href="#impact">Impact</a>
-    <a href="#work">Work</a>
-    <a href="#expertise">Expertise</a>
-    <a href="#contact">Contact</a>
+  <div class="nav-right">
+    <div class="navlinks">
+      <a href="#about">About</a>
+      <a href="#impact">Impact</a>
+      <a href="#work">Work</a>
+      <a href="#expertise">Expertise</a>
+      <a href="#writing">Writing</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+      <svg class="icon-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+      <svg class="icon-moon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    </button>
+    <button class="hamburger" id="hamburger" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </div></nav>
+
+<div class="mobile-overlay" id="mobileOverlay">
+  <a href="#about">About</a>
+  <a href="#impact">Impact</a>
+  <a href="#work">Work</a>
+  <a href="#expertise">Expertise</a>
+  <a href="#writing">Writing</a>
+  <a href="#contact">Contact</a>
+</div>
 
 <header class="hero"><div class="wrap">
   <div class="hero-grid">
@@ -174,11 +257,12 @@
       <h1 class="reveal" data-d="1">Pruthvi<br>Prodduturi<em>.</em></h1>
       <div class="rule reveal" data-d="2"></div>
       <p class="role reveal" data-d="2">I lead the design of <b>distributed data systems, query engines,</b> and <b>zero-to-one platforms</b> — across Microsoft's Consumer, Commercial, and Hardware data universes.</p>
-      <p class="statement reveal" data-d="3">“Consumer data is massive. Commercial data is deep. Hardware data isn't forgiving — and that's exactly where I operate.”</p>
+      <p class="statement reveal" data-d="3">"Consumer data is massive. Commercial data is deep. Hardware data isn't forgiving — and that's exactly where I operate."</p>
       <div class="cta reveal" data-d="4">
-        <a class="btn solid" href="#work">View selected work</a>
-        <a class="btn link" href="https://www.linkedin.com/in/pruthviprodduturi/" target="_blank">LinkedIn</a>
-        <a class="btn link" href="https://github.com/PruthviProdduturi" target="_blank">GitHub</a>
+        <a class="btn solid" href="#work">Selected Work</a>
+        <a class="btn link" href="https://www.linkedin.com/in/pruthviprodduturi/" target="_blank"><svg style="width:14px;height:14px;vertical-align:middle;margin-right:4px;margin-top:-2px" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>LinkedIn</a>
+        <a class="btn link" href="https://github.com/PruthviProdduturi" target="_blank"><svg style="width:14px;height:14px;vertical-align:middle;margin-right:4px;margin-top:-2px" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>GitHub</a>
+        <a class="btn link" href="Pruthvi_Prodduturi_Resume.pdf" download>Resume <svg style="width:14px;height:14px;vertical-align:middle;margin-left:2px;margin-top:-2px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></a>
       </div>
     </div>
     <div class="portrait reveal" data-d="2">
@@ -201,6 +285,8 @@
     <div class="stat reveal" data-d="3"><div class="n">50+</div><div class="l">stakeholders served</div></div>
     <div class="stat reveal" data-d="4"><div class="n">Global</div><div class="l">scale, multi-site</div></div>
   </div>
+  <p class="about-narrative reveal">I gravitate toward the problems where data is largest, least forgiving, and most consequential — consumer telemetry at petabyte scale, competitive intelligence reviewed by the CEO, hardware systems where a bad reading means a real-world failure. I believe the best platforms aren't built by choosing between depth and breadth — they're built by engineers who refuse to pick.</p>
+  <p class="about-edu reveal" style="margin-top:24px;text-align:center;color:var(--muted);font-size:.9rem;letter-spacing:.02em">M.S. Digital Sciences, Kent State University &nbsp;·&nbsp; B.Tech. Electronics &amp; Communication Engineering, JNTU</p>
 </div></section>
 
 <section id="impact"><div class="wrap">
@@ -219,8 +305,8 @@
     <div class="imp reveal">
       <div class="num">02</div>
       <div>
-        <h3>The platform behind AI competitive strategy</h3>
-        <p>Architected the end-to-end system — ingestion pipelines, governed data models, and the executive analytics layer — delivering <b>competitive intelligence across the GenAI landscape</b> that directly informs leadership strategy. Engineered <b>sub-five-second query performance</b> on scalable, reliable data <b>reviewed daily by executives</b>, serving 50+ stakeholders — with <b>100% metric parity</b> across executive scorecards.</p>
+        <h3>The platform behind competitive strategy</h3>
+        <p>Architected the end-to-end competitive-intelligence platform — automated ingestion pipelines, governed data models, and the executive analytics layer — spanning <b>AI compete</b> (GenAI landscape vs. OpenAI, Google, AWS), <b>Security compete</b> (endpoint &amp; cloud-security positioning), and <b>Product-level compete</b> (cross-portfolio competitive analysis). Data-backed strategy with full automation from source to scorecard, delivering <b>sub-five-second query performance</b> on scalable, reliable data <b>reviewed daily by executives</b>, serving 50+ stakeholders — with <b>100% metric parity</b> across executive scorecards.</p>
       </div>
     </div>
     <div class="imp reveal">
@@ -250,7 +336,7 @@
       <div>
         <div class="idx">01 / Forge</div>
         <h3>Forge</h3>
-        <div class="tagline">The core data platform.</div>
+        <div class="tagline">The core data engineering platform.</div>
         <p>Scalable compute, reliable orchestration, and governed analytics — an end-to-end platform taking raw ingestion to governed, serving-ready data with lineage and data quality, on a two-cluster model.</p>
         <div class="meta"><span>Azure / Bicep</span><span>AKS</span><span>Apache Spark</span><span>Trino</span><span>Airflow</span><span>Delta Lake</span></div>
       </div>
@@ -266,6 +352,16 @@
       </div>
       <a class="view" href="https://github.com/PruthviProdduturi/LoomX" target="_blank">View repository ↗</a>
     </div>
+    <div class="item reveal">
+      <div>
+        <div class="idx">03 / Trino C# Client</div>
+        <h3>Trino C# .NET Client</h3>
+        <div class="tagline">Open-source contributor — use-case design &amp; integration engineering.</div>
+        <p>Contributed use-case design and integration engineering for the official Trino .NET client library — an ADO.NET-compatible C# client open-sourced from Microsoft under the trinodb organization. Acknowledged at Trino Summit 2024.</p>
+        <div class="meta"><span>C#</span><span>.NET</span><span>Trino</span><span>ADO.NET</span><span>Open Source</span></div>
+      </div>
+      <a class="view" href="https://github.com/trinodb/trino-csharp-client" target="_blank">View repository ↗</a>
+    </div>
   </div>
 </div></section>
 
@@ -276,67 +372,158 @@
   </div>
   <div class="exp">
     <div class="expcol reveal" data-d="1">
+      <h4>Leadership</h4>
+      <div class="tags">
+        <span class="tag key">Zero-to-one builds</span><span class="tag">Open source</span><span class="tag key">Mentoring</span><span class="tag key">Exec communication</span><span class="tag">Cross-geo</span><span class="tag">Navigating ambiguity</span>
+      </div>
+    </div>
+    <div class="expcol reveal" data-d="2">
       <h4>Distributed Systems</h4>
       <div class="tags">
         <span class="tag">MPP query engines</span><span class="tag">Columnar storage</span><span class="tag">Vectorized execution</span><span class="tag">Partitioning strategies</span><span class="tag">Async job systems</span><span class="tag">IoT orchestration</span>
       </div>
     </div>
-    <div class="expcol reveal" data-d="2">
+    <div class="expcol reveal" data-d="3">
       <h4>Data Architecture</h4>
       <div class="tags">
-        <span class="tag">Lakehouse design</span><span class="tag">Semantic models</span><span class="tag">Telemetry pipelines</span><span class="tag">Stream &amp; batch</span><span class="tag">Medallion architecture</span>
-      </div>
-    </div>
-    <div class="expcol reveal" data-d="3">
-      <h4>Query Engines</h4>
-      <div class="tags">
-        <span class="tag">Fabric SQL</span><span class="tag">Presto</span><span class="tag">Trino</span><span class="tag">StarRocks</span><span class="tag">ClickHouse</span><span class="tag">Apache Kylin</span><span class="tag">Query optimization</span>
+        <span class="tag">Lakehouse design</span><span class="tag">Semantic models</span><span class="tag">Telemetry pipelines</span><span class="tag">Stream &amp; batch</span><span class="tag">Medallion architecture</span><span class="tag">Cosmos DB</span>
       </div>
     </div>
     <div class="expcol reveal" data-d="1">
-      <h4>Languages &amp; Foundations</h4>
+      <h4>Query Engines</h4>
       <div class="tags">
-        <span class="tag key">C#</span><span class="tag key">.NET</span><span class="tag">Python</span><span class="tag">TypeScript</span><span class="tag">JavaScript</span><span class="tag">SQL</span><span class="tag">T-SQL</span>
+        <span class="tag">Fabric SQL</span><span class="tag">Presto / Trino</span><span class="tag">StarRocks</span><span class="tag">ClickHouse</span><span class="tag">Apache Kylin</span><span class="tag">Query optimization</span>
       </div>
     </div>
     <div class="expcol reveal" data-d="2">
-      <h4>Platform Engineering</h4>
+      <h4>Languages &amp; Foundations</h4>
       <div class="tags">
-        <span class="tag">FastAPI</span><span class="tag">React</span><span class="tag">Azure</span><span class="tag">IoT Hub</span><span class="tag">Managed identity</span><span class="tag">VNet</span>
+        <span class="tag key">C#</span><span class="tag key">.NET</span><span class="tag">Python</span><span class="tag">TypeScript</span><span class="tag">JavaScript</span><span class="tag">SQL</span><span class="tag">T-SQL</span><span class="tag">KQL</span><span class="tag">SCOPE</span>
       </div>
     </div>
     <div class="expcol reveal" data-d="3">
-      <h4>Delivery &amp; Reliability</h4>
+      <h4>Platform Engineering &amp; Reliability</h4>
       <div class="tags">
-        <span class="tag">CI/CD automation</span><span class="tag">Benchmarking &amp; perf tuning</span><span class="tag">Live-site ownership</span><span class="tag">Zero-key security</span>
+        <span class="tag">Azure</span><span class="tag">React</span><span class="tag">FastAPI</span><span class="tag">IoT Hub</span><span class="tag">VNet</span><span class="tag">Managed identity</span><span class="tag">CI/CD automation</span><span class="tag">Zero-key security</span><span class="tag">Live-site ownership</span><span class="tag">Perf tuning</span>
       </div>
     </div>
+  </div>
+</div></section>
+
+<section id="writing"><div class="wrap">
+  <div class="sec-head">
+    <div class="label reveal">05 — Writing</div>
+    <h2 class="sec-h reveal" data-d="1">Technical writing, <em>from the field.</em></h2>
+  </div>
+  <div class="writing">
+    <div class="writing-item reveal">
+      <div>
+        <h3><a href="https://medium.com/@pruthvi.prodduturi/the-microsoft-data-ecosystem-d1b5d0d53412" target="_blank">How Fabric SQL AEP Outperforms Trino Across Real-World Workloads</a></h3>
+        <p>A deep comparison of data platform performance across the Microsoft data ecosystem.</p>
+      </div>
+      <a class="view" href="https://medium.com/@pruthvi.prodduturi/the-microsoft-data-ecosystem-d1b5d0d53412" target="_blank">Read on Medium ↗</a>
+    </div>
+    <div class="writing-item reveal">
+      <div>
+        <h3><a href="https://medium.com/@pruthvi.prodduturi/the-importance-of-versioning-in-the-fabric-semantic-model-e68d075d8a31" target="_blank">The Importance of Versioning in the Fabric Semantic Model</a></h3>
+        <p>Process and strategy for versioning semantic models at scale.</p>
+      </div>
+      <a class="view" href="https://medium.com/@pruthvi.prodduturi/the-importance-of-versioning-in-the-fabric-semantic-model-e68d075d8a31" target="_blank">Read on Medium ↗</a>
+    </div>
+    <div class="writing-item reveal">
+      <div>
+        <h3><a href="https://medium.com/@pruthvi.prodduturi/microsoft-fabric-direct-lake-with-ci-cd-dec402627b75" target="_blank">Microsoft Fabric Direct Lake with CI/CD</a></h3>
+        <p>Navigating semantic models and reports deployment challenges at scale.</p>
+      </div>
+      <a class="view" href="https://medium.com/@pruthvi.prodduturi/microsoft-fabric-direct-lake-with-ci-cd-dec402627b75" target="_blank">Read on Medium ↗</a>
+    </div>
+    <div class="writing-item reveal">
+      <div>
+        <h3><a href="https://medium.com/@pruthvi.prodduturi/direct-lake-semantic-model-mastery-with-fabric-spark-and-sempy-760fa7f114b8" target="_blank">Direct Lake Semantic Model Mastery with Fabric Spark and SemPY</a></h3>
+        <p>Tips and tricks for semantic model optimization.</p>
+      </div>
+      <a class="view" href="https://medium.com/@pruthvi.prodduturi/direct-lake-semantic-model-mastery-with-fabric-spark-and-sempy-760fa7f114b8" target="_blank">Read on Medium ↗</a>
+    </div>
+    <div class="writing-item reveal">
+      <div>
+        <h3><a href="https://medium.com/@pruthvi.prodduturi/microsoft-fabric-direct-lake-semantic-models-9d9fcd9eea3c" target="_blank">Microsoft Fabric Direct Lake Semantic Models — Best Practices</a></h3>
+        <p>Performance optimization strategies for peak Direct Lake performance.</p>
+      </div>
+      <a class="view" href="https://medium.com/@pruthvi.prodduturi/microsoft-fabric-direct-lake-semantic-models-9d9fcd9eea3c" target="_blank">Read on Medium ↗</a>
+    </div>
+    <div class="writing-item reveal">
+      <div>
+        <h3><a href="https://medium.com/@pruthvi.prodduturi/best-practice-analyzer-in-microsoft-fabric-dbb8c46cce18" target="_blank">Best Practice Analyzer in Microsoft Fabric</a></h3>
+        <p>A long-awaited feature now at your fingertips.</p>
+      </div>
+      <a class="view" href="https://medium.com/@pruthvi.prodduturi/best-practice-analyzer-in-microsoft-fabric-dbb8c46cce18" target="_blank">Read on Medium ↗</a>
+    </div>
+  </div>
+  <div class="writing-all">
+    <a href="https://medium.com/@pruthvi.prodduturi" target="_blank">View all on Medium ↗</a>
   </div>
 </div></section>
 
 <section id="contact" class="contact"><div class="wrap">
-  <div class="label reveal" style="justify-content:center">05 — Contact</div>
+  <div class="label reveal" style="justify-content:center">06 — Contact</div>
   <h2 class="big reveal" data-d="1">Let's build something<br><em>at scale.</em></h2>
   <p class="reveal" data-d="2">Open to conversations on distributed data systems, query-engine architecture, and platform engineering.</p>
   <div class="cta reveal" data-d="3">
-    <a class="btn solid" href="https://www.linkedin.com/in/pruthviprodduturi/" target="_blank">Connect on LinkedIn</a>
-    <a class="btn link" href="https://github.com/PruthviProdduturi" target="_blank">GitHub</a>
+    <a class="btn solid" href="https://www.linkedin.com/in/pruthviprodduturi/" target="_blank"><svg style="width:14px;height:14px;vertical-align:middle;margin-right:5px;margin-top:-2px" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>Connect on LinkedIn</a>
+    <a class="btn link" href="https://github.com/PruthviProdduturi" target="_blank"><svg style="width:14px;height:14px;vertical-align:middle;margin-right:4px;margin-top:-2px" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>GitHub</a>
+    <a class="btn link" href="Pruthvi_Prodduturi_Resume.pdf" download>Resume <svg style="width:14px;height:14px;vertical-align:middle;margin-left:2px;margin-top:-2px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></a>
   </div>
 </div></section>
 
 <footer><div class="wrap">
-  <span class="mono">© 2026 Pruthvi Prodduturi</span>
+  <span class="mono">&copy; 2026 Pruthvi Prodduturi</span>
   <span>Engineering Lead · Microsoft · Redmond, WA</span>
-  <span><a href="https://www.linkedin.com/in/pruthviprodduturi/" target="_blank">LinkedIn</a> &nbsp;·&nbsp; <a href="https://github.com/PruthviProdduturi" target="_blank">GitHub</a></span>
+  <span><a href="https://www.linkedin.com/in/pruthviprodduturi/" target="_blank"><svg style="width:13px;height:13px;vertical-align:middle;margin-right:3px;margin-top:-1px" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>LinkedIn</a> &nbsp;·&nbsp; <a href="https://github.com/PruthviProdduturi" target="_blank"><svg style="width:13px;height:13px;vertical-align:middle;margin-right:3px;margin-top:-1px" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>GitHub</a></span>
 </div></footer>
 
 <script>
+  // Theme toggle
+  (function(){
+    const toggle=document.getElementById('themeToggle');
+    const html=document.documentElement;
+    const stored=localStorage.getItem('theme');
+    const osPref=window.matchMedia('(prefers-color-scheme:dark)');
+    function apply(t){html.setAttribute('data-theme',t)}
+    if(stored){apply(stored)}else if(osPref.matches){apply('dark')}
+    toggle.addEventListener('click',()=>{
+      const next=html.getAttribute('data-theme')==='dark'?'light':'dark';
+      apply(next);localStorage.setItem('theme',next);
+    });
+    osPref.addEventListener('change',e=>{
+      if(!localStorage.getItem('theme')){apply(e.matches?'dark':'light')}
+    });
+  })();
+
+  // Nav scroll
   const nav=document.getElementById('nav');
   addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>20));
+
+  // Reveal animations
   const io=new IntersectionObserver((es)=>{
     es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})
   },{threshold:.12});
   document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+  // Mobile nav
+  (function(){
+    const btn=document.getElementById('hamburger');
+    const overlay=document.getElementById('mobileOverlay');
+    btn.addEventListener('click',()=>{
+      btn.classList.toggle('open');
+      overlay.classList.toggle('open');
+      document.body.style.overflow=overlay.classList.contains('open')?'hidden':'';
+    });
+    overlay.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{
+      btn.classList.remove('open');
+      overlay.classList.remove('open');
+      document.body.style.overflow='';
+    }));
+  })();
 </script>
 </body>
 </html>
